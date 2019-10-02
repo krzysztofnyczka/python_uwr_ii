@@ -57,11 +57,46 @@ def romb(n):
 
 # romb(4)
 
+
 ''' zadanie 4 '''
 def zaszyfruj(tekst, klucz):
-    pass
+    enc = [chr(ord(a) ^ klucz) for a in tekst]
+    return enc
 
-# for i in range(10):
-#     for j in range(10):
-#         print(i*j, end=' ')
-#     print()
+
+def odszyfruj(szyfr, klucz):
+    dec = [chr(ord(a) ^ klucz) for a in szyfr]
+    return dec
+
+
+# print(zaszyfruj('Python', 7))
+# print(odszyfruj(zaszyfruj('Python', 7), 7))
+
+
+''' zadanie 5 '''
+def rozklad(n):
+    ans = []
+    i = 2
+    while n > 1:
+        existance = 0
+        while n % i == 0:
+            existance += 1
+            n = n/i
+            print(n)
+        ans.append((i, existance))
+        i += 1
+    return ans
+
+
+# print(rozklad(756))
+
+
+''' zadanie 6 '''
+def tabliczka(x1, x2, y1, y2):
+    for i in range(x1,x2+1):
+        for j in range(y1,y2+1):
+            print(i*j, end=' ')
+        print()
+
+# TODO
+tabliczka(3,5,2,4)
