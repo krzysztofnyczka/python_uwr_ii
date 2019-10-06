@@ -93,10 +93,26 @@ def rozklad(n):
 
 ''' zadanie 6 '''
 def tabliczka(x1, x2, y1, y2):
-    for i in range(x1,x2+1):
-        for j in range(y1,y2+1):
-            print(i*j, end=' ')
+    def spaces(num, l):
+        new_l = len(str(num))
+        if new_l == l:
+            print(num, end=' ')
+            return
+        for i in range(l-new_l):
+            print(' ',end='')
+        print(num,end=' ')
+        return
+
+    max_len = len(str(x2*y2))
+    for i in range(x1-1, x2+1):
+        if i == x1-1:
+            spaces(' ',max_len)
+            for j in range(y1, y2+1):
+                spaces(j, max_len)
+        else:
+            for j in range(y1-1, y2+1):
+                spaces(i*j, max_len)
         print()
 
-# TODO
-tabliczka(3,5,2,4)
+
+# tabliczka(3,5,2,4)
