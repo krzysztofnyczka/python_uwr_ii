@@ -1,45 +1,5 @@
 import time
 
-def zad1k():
-    def is_prime(n):
-        if n <= 1:
-            return False
-        if n <= 3:
-            return True
-        if n % 2 == 0 or n % 3 == 0:
-            return False
-        i = 5
-        while i * i <= n:
-            if n % i == 0 or n % (i + 2) == 0:
-                return False
-            i = i + 6
-        return True
-
-    # 1
-
-    def primes_imp(n):
-        primes = []
-        for i in range(2, n + 1):
-            if is_prime(i):
-                primes.append(i)
-        return primes
-
-    def primes_lst_cmp(n):
-        return [i for i in range(2, n + 1) if is_prime(i)]
-
-    def primes_fun(n):
-        return list(filter(is_prime, range(2, n + 1)))
-
-    x = 500000
-    t = time.time()
-    print(primes_imp(x))
-    print(time.time() - t)
-    t = time.time()
-    print(primes_lst_cmp(x))
-    print(time.time() - t)
-    t = time.time()
-    print(primes_fun(x))
-    print(time.time() - t)
 
 def zad1():
     def pierwsze_imperatywna(n):
@@ -55,11 +15,29 @@ def zad1():
         return ans
 
     def pierwsze_skladana(n):
-        pass
+        return list(filter(lambda x: x is not None, [i if i > 1 and all([i % j != 0 for j in range(2, i)]) else None for i in range(2, n+1)]))
 
-    print(pierwsze_imperatywna(100))
+    def pierwsze_funkcyjna(n):
+        def is_prime(i, n):
+            if i < n and n > 1:
+                if n % i == 0:
+                    return False
+                return is_prime(i+1, n)
+            return True
+        return list(filter(lambda x: is_prime(2, x), range(2, n+1)))
 
-# zad1k()
+    x = 500
+    t = time.time()
+    print(pierwsze_imperatywna(x))
+    print(time.time() - t)
+    t = time.time()
+    print(pierwsze_skladana(x))
+    print(time.time() - t)
+    t = time.time()
+    print(pierwsze_funkcyjna(x))
+    print(time.time() - t)
+
+zad1()
 
 
 def zad2():
@@ -101,4 +79,4 @@ def zad2():
     print(doskonale_funkcyjna(x))
     print(time.time() - t)
 
-zad2()
+# zad2()
