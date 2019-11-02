@@ -1,4 +1,5 @@
 import copy
+import time
 from collections import deque
 
 
@@ -174,7 +175,77 @@ def logic_image_solver(width, height, data_w, data_h):
     return checked
 
 
-r = read_input()
-res = image_printer(logic_image_solver(len(r[1]), len(r[0]), r[1], r[0]))
-for c in res:
-    print(*c)
+def zad3():
+    r = read_input()
+    res = image_printer(logic_image_solver(len(r[1]), len(r[0]), r[1], r[0]))
+    for c in res:
+        print(*c)
+
+
+def zad1():
+    def doskonale_imperatywna(n):
+        def doskonala(n):
+            dzielniki = []
+            for i in range(1, n):
+                if n % i == 0:
+                    dzielniki.append(i)
+            if sum(dzielniki) == n:
+                return True
+            return False
+        ans = []
+        for i in range(1, n):
+            if doskonala(i):
+                ans.append(i)
+        return ans
+
+
+    def doskonale_iterowanaa(n):
+        def doskonala(n):
+            dzielniki = []
+            for i in range(1, n):
+                if n % i == 0:
+                    dzielniki.append(i)
+            if sum(dzielniki) == n:
+                return True
+            return False
+
+        for i in range(1, n):
+            if doskonala(i):
+                yield i
+
+    def doskonale_skladana(n):
+        def dosk(n):
+            return [i for i in range(1, n) if n % i == 0]
+        return [i for i in range(1, n) if sum(dosk(i)) == i]
+
+    def doskonale_funkcyjna(n):
+        def summy(n):
+            return sum(filter(lambda y: n % y == 0, range(1, n)))
+
+        return list(filter(lambda x: x == summy(x), range(1, n + 1)))
+
+    # n = 100
+    # print('\t\t\t\t\t\t', end='')
+    # for x in range(1, 4):
+    #     print(pow(n, x), end='\t\t')
+    # print()
+
+    for i in range(2, 5):
+        x = pow(10, i)
+        print()
+        print('N = {}'.format(x))
+        t = time.time()
+        doskonale_imperatywna(x)
+        print("Czas imperatytwnie: {}".format(round(time.time() - t, 4)))
+        t = time.time()
+        doskonale_skladana(x)
+        print("Czas składanie: {}".format(round(time.time() - t, 4)))
+        t = time.time()
+        doskonale_funkcyjna(x)
+        print("Czas funkcyjnie: {}".format(round(time.time() - t, 4)))
+        t = time.time()
+        list(doskonale_iterowanaa(x))
+        print("Czas iterowalnie: {}".format(round(time.time() - t, 4)))
+
+
+zad1()
