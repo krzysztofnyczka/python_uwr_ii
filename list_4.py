@@ -37,8 +37,6 @@ def zad1():
     print(pierwsze_funkcyjna(x))
     print(time.time() - t)
 
-zad1()
-
 
 def zad2():
     def doskonala(n):
@@ -79,4 +77,6 @@ def zad2():
     print(doskonale_funkcyjna(x))
     print(time.time() - t)
 
+
+zad1()
 # zad2()

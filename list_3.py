@@ -2,7 +2,6 @@ import math
 import random
 
 
-# zad2
 def zad2():
     def pierwiasterk(n):
         ans = 0

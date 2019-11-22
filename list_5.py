@@ -2,7 +2,11 @@ import copy
 import time
 from collections import deque
 
-
+'''
+Zadanie 3 zrealizowane podczas kursu Sztuczna Inteligencja.
+Stad tyle kodu.
+Pozostale zadanie znajduja sie na dole projektu, wraz z wywolaniami.
+'''
 def read_input():
     with open("zad_input.txt") as file:
         imp = []
@@ -224,11 +228,6 @@ def zad1():
 
         return list(filter(lambda x: x == summy(x), range(1, n + 1)))
 
-    # n = 100
-    # print('\t\t\t\t\t\t', end='')
-    # for x in range(1, 4):
-    #     print(pow(n, x), end='\t\t')
-    # print()
 
     for i in range(2, 5):
         x = pow(10, i)
